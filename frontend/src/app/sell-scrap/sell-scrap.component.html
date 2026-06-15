@@ -1,40 +1,77 @@
-<div class="sell-scrap-container">
-    <h2>Sell Your Scrap</h2>
-    <form [formGroup]="sellScrapForm" (ngSubmit)="onSubmit()">
-        <div>
-          <label for="name">Scrap Name:</label>
-          <input id="name" formControlName="name" required>
-          <div *ngIf="sellScrapForm.get('name')?.invalid && sellScrapForm.get('name')?.touched">
-            <small class="error">Name is required.</small>
-          </div>
+<div class="sell-scrap-container card">
+    <h2>List Your Scrap Material</h2>
+    <p>Earn money and help the environment by finding buyers for your scrap. Fill in the details below.</p>
+
+    <form [formGroup]="sellScrapForm" (ngSubmit)="onSubmit()" class="sell-scrap-form">
+        <!-- Scrap Name -->
+        <div class="form-group">
+            <label for="name">Scrap Name</label>
+            <input 
+                id="name" 
+                formControlName="name" 
+                placeholder="e.g. 50kg Copper Wire, Plastic Bottles..."
+            >
+            <div class="error-container" *ngIf="sellScrapForm.get('name')?.invalid && sellScrapForm.get('name')?.touched">
+                <small class="error">A description title is required.</small>
+            </div>
+        </div>
+
+        <!-- Material Type -->
+        <div class="form-group">
+            <label for="type">Material Type</label>
+            <select id="type" formControlName="type">
+                <option value="metal">Metal</option>
+                <option value="plastic">Plastic</option>
+                <option value="electronic">Electronics</option>
+                <option value="paper">Paper</option>
+            </select>
+            <div class="error-container" *ngIf="sellScrapForm.get('type')?.invalid && sellScrapForm.get('type')?.touched">
+                <small class="error">Please select a material category.</small>
+            </div>
         </div>
       
-        <div>
-          <label for="location">Location:</label>
-          <input id="location" formControlName="location" required>
-          <div *ngIf="sellScrapForm.get('location')?.invalid && sellScrapForm.get('location')?.touched">
-            <small class="error">Location is required.</small>
-          </div>
+        <!-- Location -->
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input 
+                id="location" 
+                formControlName="location" 
+                placeholder="e.g. Chicago, IL or New York, NY"
+            >
+            <div class="error-container" *ngIf="sellScrapForm.get('location')?.invalid && sellScrapForm.get('location')?.touched">
+                <small class="error">Location is required so buyers can find you.</small>
+            </div>
         </div>
       
-        <div>
-          <label for="price">Price:</label>
-          <input id="price" formControlName="price" required>
-          <div *ngIf="sellScrapForm.get('price')?.invalid && sellScrapForm.get('price')?.touched">
-            <small class="error">Price is required and must be a number.</small>
-          </div>
+        <!-- Price -->
+        <div class="form-group">
+            <label for="price">Price (USD)</label>
+            <input 
+                id="price" 
+                formControlName="price" 
+                placeholder="e.g. 50 or Negotiable"
+            >
+            <div class="error-container" *ngIf="sellScrapForm.get('price')?.invalid && sellScrapForm.get('price')?.touched">
+                <small class="error">Please enter a valid price (number) or 'Negotiable'.</small>
+            </div>
         </div>
       
-        <div>
-          <label for="description">Description:</label>
-          <textarea id="description" formControlName="description" required></textarea>
-          <div *ngIf="sellScrapForm.get('description')?.invalid && sellScrapForm.get('description')?.touched">
-            <small class="error">Description is required.</small>
-          </div>
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description">Item Description</label>
+            <textarea 
+                id="description" 
+                formControlName="description" 
+                rows="4" 
+                placeholder="Describe your scrap material condition, packaging, and sorting details..."
+            ></textarea>
+            <div class="error-container" *ngIf="sellScrapForm.get('description')?.invalid && sellScrapForm.get('description')?.touched">
+                <small class="error">Description is required.</small>
+            </div>
         </div>
       
-        <button type="submit" [disabled]="sellScrapForm.invalid">Submit</button>
-      </form>
-      
-   
+        <button type="submit" class="btn btn-primary submit-btn" [disabled]="sellScrapForm.invalid">
+            Publish Scrap Listing
+        </button>
+    </form>
 </div>

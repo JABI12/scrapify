@@ -1,34 +1,99 @@
-<div class="browse-section">
-    <h2>Browse Scrap Materials</h2>
+<div class="browse-container">
+    <div class="browse-header">
+        <h2>Browse Scrap Materials</h2>
+        <p>Search, filter, and discover available recyclables in your community.</p>
+    </div>
 
-    <!-- Filter Options -->
-    <div class="filter-options">
-        <label for="material-type">Material Type:</label>
-        <select id="material-type">
-            <option value="all">All</option>
-            <option value="metal">Metal</option>
-            <option value="plastic">Plastic</option>
-            <option value="electronic">Electronics</option>
-            <option value="paper">Paper</option>
-        </select>
+    <!-- Filter Panel -->
+    <div class="filter-card card">
+        <div class="filter-grid">
+            <div class="filter-group">
+                <label for="material-type">Material Type</label>
+                <select id="material-type" [(ngModel)]="selectedType" (change)="applyFilters()">
+                    <option value="all">All Materials</option>
+                    <option value="metal">Metal</option>
+                    <option value="plastic">Plastic</option>
+                    <option value="electronic">Electronics</option>
+                    <option value="paper">Paper</option>
+                </select>
+            </div>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" placeholder="Enter location...">
-
-        <button type="button" class="btn">Apply Filters</button>
+            <div class="filter-group">
+                <label for="location-search">Location</label>
+                <input 
+                    type="text" 
+                    id="location-search" 
+                    placeholder="Search by city/state..." 
+                    [(ngModel)]="searchLocation"
+                    (input)="applyFilters()"
+                >
+            </div>
+            
+            <div class="filter-action">
+                <button type="button" class="btn btn-primary" (click)="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
     </div>
 
     <!-- Listings Grid -->
-    <div class="listing-grid">
-        <!-- Sample Listing Card -->
-        <div class="listing-card" *ngFor="let item of scrapItems"> <!-- Use *ngFor for dynamic content -->
-            <img [src]="item.image" alt="{{ item.name }}">
-            <h3>{{ item.name }}</h3>
-            <p>Location: {{ item.location }}</p>
-            <p>Price: {{ item.price }}</p>
-            <a [routerLink]="['/details', item.id]" class="btn-small">View Details</a> <!-- Dynamic link for details -->
+    <div class="listing-grid" *ngIf="scrapItems.length > 0; else noItemsTemplate">
+        <div class="listing-card card" *ngFor="let item of scrapItems">
+            <div class="card-image-container">
+                <img [src]="item.image" alt="{{ item.name }}" class="card-img">
+                <span class="category-badge">{{ item.type | titlecase }}</span>
+            </div>
+            <div class="card-content">
+                <h3>{{ item.name }}</h3>
+                <p class="item-meta">
+                    <span class="meta-label">Location:</span> {{ item.location }}
+                </p>
+                <div class="card-footer-row">
+                    <span class="price-tag">{{ item.price }}</span>
+                    <button (click)="viewDetails(item, $event)" class="btn-small">View Details</button>
+                </div>
+            </div>
         </div>
-    </div>
+    </div>
 
- <!-- <img src="assets\metalsheets.jpeg" alt="#"> -->
+    <!-- No Items Fallback -->
+    <ng-template #noItemsTemplate>
+        <div class="no-items-card card">
+            <div class="no-items-icon">🔍</div>
+            <h3>No Materials Found</h3>
+            <p>We couldn't find any listings matching your criteria. Try adjusting your filters or search location.</p>
+        </div>
+    </ng-template>
+
+    <!-- Detailed Modal Overlay -->
+    <div class="modal-overlay" *ngIf="selectedItemForDetails" (click)="closeDetails()">
+        <div class="modal-content card" (click)="$event.stopPropagation()">
+            <button class="modal-close" (click)="closeDetails()">&times;</button>
+            <div class="modal-body-layout">
+                <div class="modal-image-col">
+                    <img [src]="selectedItemForDetails.image" alt="{{ selectedItemForDetails.name }}">
+                </div>
+                <div class="modal-details-col">
+                    <span class="category-badge">{{ selectedItemForDetails.type | titlecase }}</span>
+                    <h2>{{ selectedItemForDetails.name }}</h2>
+                    <p class="modal-price">{{ selectedItemForDetails.price }}</p>
+                    
+                    <div class="details-section">
+                        <h4>Location</h4>
+                        <p>{{ selectedItemForDetails.location }}</p>
+                    </div>
+
+                    <div class="details-section">
+                        <h4>Description</h4>
+                        <p class="desc-text">{{ selectedItemForDetails.description }}</p>
+                    </div>
+
+                    <div class="details-section contact-vendor">
+                        <h4>Need this scrap?</h4>
+                        <p>Contact the seller to arrange acquisition or trade.</p>
+                        <a routerLink="/contact" (click)="closeDetails()" class="btn btn-primary">Contact Seller</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

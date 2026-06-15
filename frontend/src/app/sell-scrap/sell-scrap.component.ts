@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ScrapService } from '../services/scrap.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sell-scrap',
@@ -9,12 +11,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SellScrapComponent implements OnInit {
   sellScrapForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    // Initialize the form
+  constructor(
+    private fb: FormBuilder,
+    private scrapService: ScrapService,
+    private router: Router
+  ) {
+    // Initialize the form with type control as well
     this.sellScrapForm = this.fb.group({
       name: ['', Validators.required],
+      type: ['metal', Validators.required],
       location: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]], // Example: $50.00
+      price: ['', [Validators.required, Validators.pattern(/^\$?(\d+(\.\d{1,2})?|\d+\s*negotiable|\w+)$/i)]], // Accepts numbers or words like Negotiable
       description: ['', Validators.required]
     });
   }
@@ -23,12 +30,22 @@ export class SellScrapComponent implements OnInit {
 
   onSubmit() {
     if (this.sellScrapForm.valid) {
-      // Here you can handle the form submission
-      console.log('Form Data:', this.sellScrapForm.value);
-      // You can send this data to your backend or store it as needed
+      const formVal = this.sellScrapForm.value;
+      
+      // Call service to add listing to in-memory state
+      this.scrapService.addItem({
+        name: formVal.name,
+        type: formVal.type,
+        location: formVal.location,
+        price: formVal.price.startsWith('$') || isNaN(Number(formVal.price)) ? formVal.price : `$${formVal.price}`,
+        description: formVal.description
+      });
 
+      alert('Scrap listing created successfully!');
+      
+      // Navigate to browse listings
+      this.router.navigate(['/browse']);
     } else {
-      // Handle form errors
       console.log('Form is not valid');
     }
   }

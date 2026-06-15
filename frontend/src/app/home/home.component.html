@@ -1,29 +1,82 @@
+<!-- Hero Banner Section -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>Discover Value in Every Piece</h1>
+        <p>Your sustainable marketplace for buying, selling, and recycling scrap materials. Join hands to build a greener future.</p>
+        <div class="cta-buttons">
+            <a routerLink="/browse" class="btn btn-accent">Browse Scrap</a>
+            <a routerLink="/sell" class="btn btn-secondary">Sell Your Scrap</a>
+        </div>
+    </div>
+</header>
+
+<div class="home-container">
     <!-- Latest Listings Section -->
-    <section id="latest-listings" class="latest-listings">
-        <h2>Latest Listings</h2>
+    <section class="latest-listings">
+        <div class="section-header">
+            <h2>Featured Listings</h2>
+            <p>Check out some of the latest recyclable materials listed by sellers near you.</p>
+        </div>
+        
         <div class="listing-grid">
-            <!-- Sample Listing Card -->
-            <div class="listing-card">
-                <img src="image1.jpg" alt="Metal sheets">
-                <h3>20 lbs of Metal Sheets</h3>
-                <p>Location: New York</p>
-                <p>Price: $50</p>
-                <a href="#" class="btn-small">View Details</a>
+            <!-- Sample Listing Card 1 -->
+            <div class="listing-card card">
+                <div class="card-img-wrapper">
+                    <img src="assets/metalsheets.jpeg" alt="Metal sheets">
+                    <span class="category-badge">Metal</span>
+                </div>
+                <div class="card-body">
+                    <h3>20 lbs of Metal Sheets</h3>
+                    <p class="location-tag">Location: New York, NY</p>
+                    <div class="card-footer-row">
+                        <span class="price-tag">$50</span>
+                        <a routerLink="/browse" class="btn btn-small">View Details</a>
+                    </div>
+                </div>
             </div>
-            <!-- Additional Listing Cards can be added here -->
-            <div class="listing-card">
-                <img src="image2.jpg" alt="Electronics for parts">
-                <h3>Used Electronics for Parts</h3>
-                <p>Location: San Francisco</p>
-                <p>Price: Negotiable</p>
-                <a href="#" class="btn-small">View Details</a>
+
+            <!-- Sample Listing Card 2 -->
+            <div class="listing-card card">
+                <div class="card-img-wrapper">
+                    <img src="assets/used.jpeg" alt="Electronics for parts">
+                    <span class="category-badge">Electronics</span>
+                </div>
+                <div class="card-body">
+                    <h3>Used Electronics for Parts</h3>
+                    <p class="location-tag">Location: San Francisco, CA</p>
+                    <div class="card-footer-row">
+                        <span class="price-tag">Negotiable</span>
+                        <a routerLink="/browse" class="btn btn-small">View Details</a>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="view-all-row">
+            <a routerLink="/browse" class="btn btn-primary">View All Listings</a>
         </div>
     </section>
 
-    <!-- Inspiration Section -->
-    <section id="inspiration" class="inspiration">
-        <h2>Get Inspired</h2>
-        <p>Explore tips, tutorials, and creative ideas for repurposing scrap materials and making sustainable choices.</p>
-        <a href="#learn-more" class="btn">Learn More</a>
+    <!-- Inspiration / Eco Stats Section -->
+    <section class="inspiration-section card">
+        <div class="inspiration-content">
+            <h2>Why Recycle with Scrapify?</h2>
+            <p>Every piece of metal, plastic, or paper you trade helps reduce carbon footprint, conserves natural resources, and keeps valuable materials out of landfills.</p>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Circular Focus</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">0%</span>
+                    <span class="stat-label">Landfill Goal</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">Eco</span>
+                    <span class="stat-label">Community Driven</span>
+                </div>
+            </div>
+            <a routerLink="/about" class="btn btn-secondary">Learn More About Us</a>
+        </div>
     </section>
+</div>

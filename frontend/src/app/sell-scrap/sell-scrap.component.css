@@ -1,52 +1,23 @@
 .sell-scrap-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 40px;
 }
 
-h2 {
+.sell-scrap-container h2 {
+    font-size: 2.25rem;
+    margin-bottom: 8px;
     text-align: center;
-    color: #4CAF50;
-    margin-bottom: 20px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.sell-scrap-container p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    text-align: center;
+    margin-bottom: 32px;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input, select, textarea {
+.submit-btn {
+    margin-top: 16px;
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.submit-button:hover:not(:disabled) {
-    background-color: #45a049;
 }
