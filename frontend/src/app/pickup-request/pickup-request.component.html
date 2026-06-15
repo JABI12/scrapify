@@ -2,7 +2,7 @@
     <h2>Request a Scrap Pickup</h2>
     <p>Fill out the form below to schedule a pickup for your scrap materials.</p>
     
-    <form (ngSubmit)="submitPickupRequest()" #pickupForm="ngForm">
+    <form (ngSubmit)="submitPickupRequest(pickupForm)" #pickupForm="ngForm">
         <!-- Scrap Type -->
         <div class="form-group">
             <label for="scrapType">Type of Scrap</label>

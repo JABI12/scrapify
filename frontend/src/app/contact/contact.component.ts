@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -13,17 +14,27 @@ export class ContactComponent {
     message: ''
   };
 
+  constructor(private http: HttpClient) {}
+
   onSubmit(form: any) {
     if (form.valid) {
-      console.log('Contact form submitted:', this.contactData);
-      alert(`Thank you, ${this.contactData.name}! Your message has been sent successfully.`);
-      form.resetForm();
-      this.contactData = {
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      };
+      this.http.post('http://localhost:3000/api/contacts', this.contactData).subscribe({
+        next: (response) => {
+          console.log('Contact message saved:', response);
+          alert(`Thank you, ${this.contactData.name}! Your message has been sent and recorded.`);
+          form.resetForm();
+          this.contactData = {
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          };
+        },
+        error: (err) => {
+          console.error('Failed to send contact message:', err);
+          alert('Failed to send contact message. Please check if the backend is running.');
+        }
+      });
     }
   }
 }

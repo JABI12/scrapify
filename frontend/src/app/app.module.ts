@@ -15,6 +15,7 @@ import { SellScrapComponent } from './sell-scrap/sell-scrap.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JoinCommunityComponent } from './join-community/join-community.component';
 import { PickupRequestComponent } from './pickup-request/pickup-request.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { PickupRequestComponent } from './pickup-request/pickup-request.componen
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

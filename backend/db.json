@@ -1,0 +1,42 @@
+{
+  "scrapItems": [
+    {
+      "id": 1,
+      "name": "20 lbs of Metal Sheets",
+      "location": "New York, NY",
+      "price": "$50",
+      "description": "Durable and clean metal sheets suitable for construction, manufacturing or upcycling DIY projects.",
+      "image": "assets/metalsheets.jpeg",
+      "type": "metal"
+    },
+    {
+      "id": 2,
+      "name": "Used Electronics for Parts",
+      "location": "San Francisco, CA",
+      "price": "Negotiable",
+      "description": "Various electronics boards, capacitors, and hardware items. Perfect for electronic hobbyists or scrap salvage.",
+      "image": "assets/used.jpeg",
+      "type": "electronic"
+    },
+    {
+      "id": 3,
+      "name": "Recycled Plastic Bottles",
+      "location": "Chicago, IL",
+      "price": "$30",
+      "description": "A batch of sorted, clean, compressed PET plastic bottles ready for direct material processing or recycling factories.",
+      "image": "assets/used.jpeg",
+      "type": "plastic"
+    },
+    {
+      "id": 4,
+      "name": "Scrap Paper Bundles",
+      "location": "Miami, FL",
+      "price": "$15",
+      "description": "Bundles of compressed cardboard and dry clean newsprint. Extremely easy to recycle or repurpose.",
+      "image": "assets/metalsheets.jpeg",
+      "type": "paper"
+    }
+  ],
+  "pickups": [],
+  "contacts": []
+}

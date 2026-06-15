@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface ScrapItem {
@@ -15,81 +16,47 @@ export interface ScrapItem {
   providedIn: 'root'
 })
 export class ScrapService {
-  private initialItems: ScrapItem[] = [
-    {
-      id: 1,
-      name: '20 lbs of Metal Sheets',
-      location: 'New York',
-      price: '$50',
-      description: 'Durable and clean metal sheets suitable for construction, manufacturing or upcycling DIY projects.',
-      image: 'assets/metalsheets.jpeg',
-      type: 'metal'
-    },
-    {
-      id: 2,
-      name: 'Used Electronics for Parts',
-      location: 'San Francisco',
-      price: 'Negotiable',
-      description: 'Various electronics boards, capacitors, and hardware items. Perfect for electronic hobbyists or scrap salvage.',
-      image: 'assets/used.jpeg',
-      type: 'electronic'
-    },
-    {
-      id: 3,
-      name: 'Recycled Plastic Bottles',
-      location: 'Chicago',
-      price: '$30',
-      description: 'A batch of sorted, clean, compressed PET plastic bottles ready for direct material processing or recycling factories.',
-      image: 'assets/used.jpeg',
-      type: 'plastic'
-    },
-    {
-      id: 4,
-      name: 'Scrap Paper Bundles',
-      location: 'Miami',
-      price: '$15',
-      description: 'Bundles of compressed cardboard and dry clean newsprint. Extremely easy to recycle or repurpose.',
-      image: 'assets/metalsheets.jpeg',
-      type: 'paper'
-    }
-  ];
+  private apiUrl = 'http://localhost:3000/api/scrap';
+  private itemsSubject = new BehaviorSubject<ScrapItem[]>([]);
 
-  private itemsSubject: BehaviorSubject<ScrapItem[]> = new BehaviorSubject<ScrapItem[]>(this.initialItems);
-
-  constructor() {}
+  constructor(private http: HttpClient) {
+    this.loadInitialData();
+  }
 
   /**
-   * Get an Observable of all scrap items.
+   * Fetch initial list of items from backend API.
+   */
+  private loadInitialData(): void {
+    this.http.get<ScrapItem[]>(this.apiUrl).subscribe({
+      next: (items) => {
+        this.itemsSubject.next(items);
+      },
+      error: (err) => {
+        console.error('Failed to load listings from backend:', err);
+      }
+    });
+  }
+
+  /**
+   * Get an Observable of the scrap items.
    */
   getItems(): Observable<ScrapItem[]> {
     return this.itemsSubject.asObservable();
   }
 
   /**
-   * Add a new scrap item dynamically.
+   * Add a new scrap item to the backend.
    */
   addItem(item: Omit<ScrapItem, 'id' | 'image'>): void {
-    const currentItems = this.itemsSubject.getValue();
-    const nextId = currentItems.length > 0 ? Math.max(...currentItems.map(i => i.id)) + 1 : 1;
-    
-    // Choose appropriate image based on type or use fallback
-    let imagePath = 'assets/used.jpeg';
-    if (item.type === 'metal') {
-      imagePath = 'assets/metalsheets.jpeg';
-    } else if (item.type === 'electronic') {
-      imagePath = 'assets/used.jpeg';
-    } else if (item.type === 'plastic') {
-      imagePath = 'assets/used.jpeg';
-    } else if (item.type === 'paper') {
-      imagePath = 'assets/metalsheets.jpeg';
-    }
-
-    const newItem: ScrapItem = {
-      ...item,
-      id: nextId,
-      image: imagePath
-    };
-
-    this.itemsSubject.next([newItem, ...currentItems]);
+    this.http.post<ScrapItem>(this.apiUrl, item).subscribe({
+      next: (newItem) => {
+        const currentItems = this.itemsSubject.getValue();
+        this.itemsSubject.next([newItem, ...currentItems]);
+      },
+      error: (err) => {
+        console.error('Failed to add listing to backend:', err);
+        alert('Error publishing listing. Please check backend status.');
+      }
+    });
   }
 }
