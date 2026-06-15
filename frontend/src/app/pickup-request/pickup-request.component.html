@@ -1,0 +1,44 @@
+<div class="pickup-request-container">
+    <h2>Request a Scrap Pickup</h2>
+    <p>Fill out the form below to schedule a pickup for your scrap materials.</p>
+    
+    <form (ngSubmit)="submitPickupRequest()" #pickupForm="ngForm">
+        <!-- Scrap Type -->
+        <div class="form-group">
+            <label for="scrapType">Type of Scrap</label>
+            <select id="scrapType" name="scrapType" ngModel required>
+                <option value="metal">Metal</option>
+                <option value="plastic">Plastic</option>
+                <option value="electronics">Electronics</option>
+                <option value="paper">Paper</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <!-- Quantity -->
+        <div class="form-group">
+            <label for="quantity">Quantity (in kg)</label>
+            <input type="number" id="quantity" name="quantity" ngModel required>
+        </div>
+        
+        <!-- Pickup Date -->
+        <div class="form-group">
+            <label for="pickupDate">Preferred Pickup Date</label>
+            <input type="date" id="pickupDate" name="pickupDate" ngModel required>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="form-group">
+            <label for="contact">Contact Number</label>
+            <input type="tel" id="contact" name="contact" ngModel required>
+        </div>
+        
+        <!-- Address -->
+        <div class="form-group">
+            <label for="address">Pickup Address</label>
+            <textarea id="address" name="address" rows="3" ngModel required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-button" [disabled]="pickupForm.invalid">Submit Pickup Request</button>
+    </form>
+</div>

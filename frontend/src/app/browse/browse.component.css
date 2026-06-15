@@ -1,0 +1,163 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Navigation */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+}
+
+header h1 {
+    display: inline;
+}
+
+nav ul {
+    list-style-type: none;
+    float: right;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Browse Section */
+.browse-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.browse-section h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Filter Options */
+.filter-options {
+    margin-bottom: 30px;
+}
+
+.filter-options label {
+    margin-right: 10px;
+}
+
+.filter-options select, 
+.filter-options input {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #45a049;
+}
+
+/* Listings Grid */
+.listing-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.listing-card {
+    background: #f9f9f9;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.listing-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.listing-card h3 {
+    font-size: 1.2em;
+    margin: 15px 0;
+}
+
+.btn-small {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-small:hover {
+    background: #45a049;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer p {
+    font-size: 0.9em;
+}
+
+.scrap-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 500px; /* Set a max-width for the item container */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.scrap-item-image {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    object-fit: cover; /* Maintain aspect ratio, cover the area */
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.scrap-item-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.scrap-item-info p {
+    margin: 5px 0;
+    color: #555;
+}

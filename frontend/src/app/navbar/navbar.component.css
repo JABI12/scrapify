@@ -1,0 +1,110 @@
+
+/* Animation for moving the logo */
+@keyframes moveLogo {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.moving-logo {
+    height: 100px;
+    animation: moveLogo 2s infinite; /* Move every 2 seconds in a loop */
+    transition: transform 0.3s;
+}
+
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Padding for the navbar */
+}
+
+/* Style for the left side */
+.navbar-brand {
+    display: flex; /* Use flex to align image and text */
+    align-items: center; /* Center vertically */
+    color: black; /* Change text color for visibility */
+    text-decoration: none;
+}
+
+.logo-image {
+    height: 100px; /* Set the height for the logo */
+    margin-right: 10px; /* Space between image and text */
+}
+
+/* Container for the right side menu */
+.navbar-menu-container {
+    background-color: #4CAF50; /* Green background for the right side */
+    padding: 10px 20px; /* Padding around the menu */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+}
+
+/* Menu styles */
+.navbar-menu {
+    list-style: none; /* Remove bullet points from list */
+    display: flex;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.navbar-item {
+    position: relative; /* For positioning dropdown */
+    margin-left: 20px; /* Space between menu items */
+}
+
+.navbar-item a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+    transition: color 0.3s; /* Transition for hover effect */
+}
+
+.navbar-item a:hover {
+    color: #ddd; /* Change color on hover */
+}
+
+/* Dropdown styles */
+.dropdown-content {
+    display: none; /* Hide by default */
+    position: absolute; /* Positioning */
+    background-color: white; /* Background for dropdown */
+    min-width: 160px; /* Minimum width of dropdown */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow */
+    z-index: 1; /* Ensure it is above other content */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show on hover */
+}
+
+.dropdown-content a {
+    color: black; /* Text color for dropdown items */
+    padding: 12px 16px; /* Padding for dropdown items */
+    text-decoration: none; /* No underline */
+    display: block; /* Block display */
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd; /* Background color on hover */
+}
+.pickup-request a {
+    background-color: #4CAF50; /* Green background for Pickup Request */
+    padding: 10px 15px; /* Padding for the request button */
+    border-radius: 5px; /* Rounded corners */
+    align-items: center;
+}
+.pickup-request {
+    margin-left: auto; /* Push the pickup request to the center */
+    margin-right: auto; /* Center it in the middle */
+}
+.pickup-request a:hover {
+    background-color: #388E3C; /* Darker green on hover */
+}
+

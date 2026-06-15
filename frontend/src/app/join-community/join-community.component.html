@@ -1,0 +1,26 @@
+<div class="join-community-container">
+    <h2>Join the Scrapify Community</h2>
+    <p>Be a part of the movement to promote sustainable recycling and responsible waste management. Join Scrapify to connect with others, share knowledge, and contribute to a greener future!</p>
+    
+    <form (ngSubmit)="submitJoinRequest()" #joinForm="ngForm">
+        <!-- Name -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" ngModel required>
+        </div>
+        
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" ngModel required>
+        </div>
+        
+        <!-- Message -->
+        <div class="form-group">
+            <label for="message">Why do you want to join?</label>
+            <textarea id="message" name="message" rows="3" ngModel></textarea>
+        </div>
+        
+        <button type="submit" class="submit-button" [disabled]="joinForm.invalid">Join Now</button>
+    </form>
+</div>

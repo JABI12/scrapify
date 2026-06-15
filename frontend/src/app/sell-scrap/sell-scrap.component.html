@@ -1,0 +1,40 @@
+<div class="sell-scrap-container">
+    <h2>Sell Your Scrap</h2>
+    <form [formGroup]="sellScrapForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="name">Scrap Name:</label>
+          <input id="name" formControlName="name" required>
+          <div *ngIf="sellScrapForm.get('name')?.invalid && sellScrapForm.get('name')?.touched">
+            <small class="error">Name is required.</small>
+          </div>
+        </div>
+      
+        <div>
+          <label for="location">Location:</label>
+          <input id="location" formControlName="location" required>
+          <div *ngIf="sellScrapForm.get('location')?.invalid && sellScrapForm.get('location')?.touched">
+            <small class="error">Location is required.</small>
+          </div>
+        </div>
+      
+        <div>
+          <label for="price">Price:</label>
+          <input id="price" formControlName="price" required>
+          <div *ngIf="sellScrapForm.get('price')?.invalid && sellScrapForm.get('price')?.touched">
+            <small class="error">Price is required and must be a number.</small>
+          </div>
+        </div>
+      
+        <div>
+          <label for="description">Description:</label>
+          <textarea id="description" formControlName="description" required></textarea>
+          <div *ngIf="sellScrapForm.get('description')?.invalid && sellScrapForm.get('description')?.touched">
+            <small class="error">Description is required.</small>
+          </div>
+        </div>
+      
+        <button type="submit" [disabled]="sellScrapForm.invalid">Submit</button>
+      </form>
+      
+   
+</div>
